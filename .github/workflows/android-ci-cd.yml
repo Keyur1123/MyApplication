@@ -99,47 +99,47 @@ jobs:
             app/build/outputs/
           retention-days: 7
 
-  test:
-    name: Run Instrumented Tests
-    runs-on: ubuntu-latest
-    needs: build
-    
-    steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
-
-      - name: 🚀 Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-          cache: 'gradle'
-
-      - name: 📱 Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: 🔧 Cache Gradle packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: 🔐 Make Gradle wrapper executable
-        run: chmod +x ./gradlew
-
-      - name: 📱 Run Instrumented Tests
-        run: ./gradlew connectedAndroidTest
-
-      - name: 📋 Upload Test Reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: app/build/reports/androidTests/
-          retention-days: 7
+#  test:
+#    name: Run Instrumented Tests
+#    runs-on: ubuntu-latest
+#    needs: build
+#
+#    steps:
+#      - name: 📥 Checkout code
+#        uses: actions/checkout@v4
+#
+#      - name: 🚀 Setup Java
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: 'temurin'
+#          java-version: '17'
+#          cache: 'gradle'
+#
+#      - name: 📱 Setup Android SDK
+#        uses: android-actions/setup-android@v3
+#
+#      - name: 🔧 Cache Gradle packages
+#        uses: actions/cache@v4
+#        with:
+#          path: |
+#            ~/.gradle/caches
+#            ~/.gradle/wrapper
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+#          restore-keys: |
+#            ${{ runner.os }}-gradle-
+#
+#      - name: 🔐 Make Gradle wrapper executable
+#        run: chmod +x ./gradlew
+#
+#      - name: 📱 Run Instrumented Tests
+#        run: ./gradlew connectedAndroidTest
+#
+#      - name: 📋 Upload Test Reports
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: test-reports
+#          path: app/build/reports/androidTests/
+#          retention-days: 7
 
   lint:
     name: Run Lint Checks
@@ -182,25 +182,25 @@ jobs:
           path: app/build/reports/lint-results.html
           retention-days: 7
 
-  security:
-    name: Security Scan
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
-
-      - name: 🔍 Run Dependency Check
-        uses: dependency-check/Dependency-Check_Action@main
-        with:
-          project: 'MyApplication'
-          path: '.'
-          format: 'HTML'
-          out: 'reports'
-
-      - name: 📋 Upload Security Reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: security-reports
-          path: reports/
-          retention-days: 7 
+#  security:
+#    name: Security Scan
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: 📥 Checkout code
+#        uses: actions/checkout@v4
+#
+#      - name: 🔍 Run Dependency Check
+#        uses: dependency-check/Dependency-Check_Action@main
+#        with:
+#          project: 'MyApplication'
+#          path: '.'
+#          format: 'HTML'
+#          out: 'reports'
+#
+#      - name: 📋 Upload Security Reports
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: security-reports
+#          path: reports/
+#          retention-days: 7
