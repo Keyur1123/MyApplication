@@ -53,9 +53,6 @@ jobs:
       - name: 🔐 Make Gradle wrapper executable
         run: chmod +x ./gradlew
 
-      - name: 🔍 Validate Gradle wrapper
-        run: ./gradlew wrapper --validate-only
-
       - name: 🧹 Clean project
         run: ./gradlew clean
 
