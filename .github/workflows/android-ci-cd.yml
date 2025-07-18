@@ -50,6 +50,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: 🔐 Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+
       - name: 🔍 Validate Gradle wrapper
         run: ./gradlew wrapper --validate-only
 
@@ -128,6 +131,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: 🔐 Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+
       - name: 📱 Run Instrumented Tests
         run: ./gradlew connectedAndroidTest
 
@@ -165,6 +171,9 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+
+      - name: 🔐 Make Gradle wrapper executable
+        run: chmod +x ./gradlew
 
       - name: 🔍 Run Lint
         run: ./gradlew lint
